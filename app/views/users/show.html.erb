@@ -1,0 +1,18 @@
+<p> User : <%= @user.name %></p>
+<p> Email : <%= @user.email %></p>
+
+
+<% @stories.each do |history| %>
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <%= link_to(image_tag(history.picture), history) if history.picture? %>
+            <div class="caption">
+                <h3><%= history.title %></h3>
+                <small><%= time_ago_in_words(history.created_at) %> ago</small>
+                <p><%= history.content.truncate(150)  %></p>
+                <p><%= history.user.email  %></p>
+                <p><%= link_to 'Show', history, class: "btn btn-primary" %> <%= link_to 'Edit', edit_story_path(history), class: "btn btn-warning" %> <%= link_to 'Destroy', history, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></p>
+            </div>
+        </div>
+  </div>
+<%end%>

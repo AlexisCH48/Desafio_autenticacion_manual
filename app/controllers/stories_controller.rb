@@ -26,6 +26,10 @@ class StoriesController < ApplicationController
   def create
     @story = Story.new(story_params)
 
+    if session[:user_id].present?
+      @user = User.find(session[:user_id])
+      @story.user = @user
+    end
     respond_to do |format|
       if @story.save
         format.html { redirect_to @story, notice: 'Story was successfully created.' }

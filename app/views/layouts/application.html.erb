@@ -12,6 +12,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </head>
   <body>
+    <%if session[:user_id].present?%>
+      <p><%= current_user.name if current_user.present? %></p>
+      <p><%= current_user.email if current_user.present? %></p>
+    <% end %>
     <%= render 'shared/navbar' %>
     <div class="container">
       <% if notice %>
